@@ -18,7 +18,7 @@
 ?>
 
 <form method="post" action="addstudent.php" enctype="multipart/form-data">
-	<table>
+	<table align="center">
 		<tr>
 			<th>Roll No</th>
 			<td><input type="text" name="rollno" placeholder="Enter Rollno" required></td>
@@ -62,8 +62,12 @@
 		$city  = $_POST['city'];
 		$pcon  = $_POST['pcon'];
 		$std  = $_POST['std'];
+		$imagename = $_FILES['simg']['name'];
+		$tempname = $_FILES['simg']['tmp_name'];
 
-		$qry="INSERT INTO `student`(`rollno`, `name`, `city`, `pcont`, `standard`) VALUES ('$rollno', '$name', '$city', '$pcon', '$std')";
+		move_uploaded_file($tempname, "../dataimg/$imagename");
+
+		$qry="INSERT INTO `student`(`rollno`, `name`, `city`, `pcont`, `standard`, `image`) VALUES ('$rollno', '$name', '$city', '$pcon', '$std', '$imagename')";
 
 		$run= mysqli_query($con, $qry);
 
