@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td align="left">Enter Rollno</td>
-			<td><input type="text" name="name" required></td>
+			<td><input type="text" name="rollno" required></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit" name="submit" value="Show Info"></td>
@@ -35,5 +35,20 @@
 	</table>
 </form>
 		
-	</body>
+</body>
 </html>
+
+<?php
+
+	if (isset($_POST['submit'])) 
+	{
+		$standard = $_POST['std'];
+		$rollno = $_POST['rollno'];
+
+		include('dbcon.php');
+		include('function.php');
+
+		showdetails($standard, $rollno);
+	}
+
+?>
