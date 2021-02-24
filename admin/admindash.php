@@ -25,7 +25,7 @@
 	</div>
 
 	<div class="dashboard">
-		<table border="1" style="width:50%" align="center">
+		<table style="width:50%" align="center">
 			<tr>
 				<td>1.</td><td><a href="addstudent.php">Insert Student Deatils</a></td>
 			</tr>
