@@ -1,3 +1,14 @@
+
+<?php
+
+	session_start();
+
+	if($_SESSION['uid'])
+	{
+		header('location: admin/admindash.php');
+	}
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,6 +17,7 @@
 	<body>
 
 		<h1 align="center">Admin Login</h1>
+
 		<form method="post" action="login.php">
 
 			<table align="center">
@@ -26,3 +38,42 @@
 
 	</body>
 </html>
+
+<?php
+
+include('dbcon.php');
+
+if(isset($_POST['login']))
+{
+	$username = $_POST['uname'];
+	$password = $_POST['pass'];
+
+	$qry = "SELECT * FROM `admin` WHERE `username`='$username' AND `password`='$password';";
+	$run = mysqli_query($con, $qry);
+	$row = mysqli_num_rows($run);
+	if($row <1)
+	{
+		?>
+		<script>
+			alert('Username or Password do not match')
+			window.open('login.php','_self');
+		</script>
+		<?php
+	}
+	else
+	{
+		$data = mysqli_fetch_assoc($run);
+
+		$id=$data['id'];
+
+		echo "id = ".$id;
+
+		
+
+		$_SESSION['uid']=$id;
+
+		header('location:admin/admindash.php');
+	}
+}
+
+?>
